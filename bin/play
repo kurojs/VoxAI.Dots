@@ -1,0 +1,4 @@
+#!/bin/bash
+query="$*"
+yt-dlp -f bestaudio "ytsearch:$query" -o - --quiet --no-warnings |
+  mpv - --no-video --quiet --term-status-msg=' ' >/dev/null 2>&1

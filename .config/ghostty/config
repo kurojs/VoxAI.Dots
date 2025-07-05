@@ -1,0 +1,8 @@
+background-opacity = 0.79
+
+background = 06080f
+
+font-size = 16
+
+### KeyBindings
+keybind = global:alt+z=toggle_quick_terminal
