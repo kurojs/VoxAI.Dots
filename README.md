@@ -1,251 +1,278 @@
 # VoxAI.Dots
 
-> **VoxAI.Dots** is an innovative series of Dots designed for GEMINI CLI, offering unique features like real-time voice synthesis, optimized music control, and a customizable floating terminal. Exclusively designed for Arch Linux systems and its derivatives, this project combines advanced automation, personalization, and multimedia control into an integrated and efficient workflow.
+[![Arch Linux](https://img.shields.io/badge/Arch_Linux-6e40c9?logo=arch-linux&logoColor=white)](https://archlinux.org/)
+[![Bash](https://img.shields.io/badge/Bash-6e40c9?logo=gnubash&logoColor=white)](https://www.gnu.org/software/bash/)
+[![Python](https://img.shields.io/badge/Python-6e40c9?logo=python&logoColor=white)](https://www.python.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-6e40c9?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![mpv](https://img.shields.io/badge/MPV-6e40c9?logo=mpv&logoColor=white)](https://mpv.io/)
+[![yt-dlp](https://img.shields.io/badge/yt--dlp-6e40c9)](https://github.com/yt-dlp/yt-dlp)
+[![playerctl](https://img.shields.io/badge/playerctl-6e40c9)](https://github.com/altdesktop/playerctl)
+[![SpeechNote](https://img.shields.io/badge/SpeechNote-6e40c9)](https://github.com/mkiol/SpeechNote)
+[![ghostty](https://img.shields.io/badge/ghostty-6e40c9)](https://github.com/ghostty-org/ghostty)
+[![License: MIT](https://img.shields.io/badge/License-MIT-6e40c9)](https://opensource.org/licenses/MIT)
+> VoxAI.Dots – The Modular Jarvis-Like AI Assistant for Arch Linux
+
+VoxAI.Dots is a modular collection of personal dotfiles enhanced with AI, designed to optimize productivity on Arch Linux systems. Inspired by Jarvis, it integrates seamlessly with Gemini CLI, Spotify, and advanced terminal tools to deliver real-time voice synthesis, intelligent music control, and a floating terminal experience. Lightweight, scalable, and highly customizable, VoxAI.Dots brings together automation, multimedia control, and smart scripting in a unified environment tailored for advanced users.
 
 ---
 
 # Click to preview the demo
 
-[![Demo](https://i.imgur.com/3DpT3fb.png)](https://kurojs.github.io/AssetHub//videos/2025-07-05%2001-03-55.mp4)
+[![Demo](https://i.imgur.com/3DpT3fb.png)](https://kurojs.github.io/AssetHub/videos/2025-07-05%2001-03-55.mp4)
 
 ---
 
-## Table of Contents
+## 📦 Table of Contents
 
-- [Features](#features)
-- [Project Architecture and Structure](#project-architecture-and-structure)
-- [Technical Requirements and Dependencies](#technical-requirements-and-dependencies)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Available Commands](#available-commands)
-- [Troubleshooting](#troubleshooting)
-
----
-
-## Main Features
-
-- **Conversational interface:** Interact using Gemini CLI for a smooth experience.
-- **Real-time voice synthesis:** Implemented with SpeechNote (installable via Flatpak) and a custom wrapper.
-- **Optimized music control:** Compatible with `yt-dlp`, `mpv`, and `playerctl` for seamless music handling.
-- **Optional floating terminal:** Powered by [ghostty](https://github.com/charmbracelet/ghostty) for a more immersive experience.
-- **Advanced automation:** Scripts designed to maximize efficiency.
-- **Flexible integration:** Easy setup for voice triggers and custom commands.
-- **Logging and error handling:** Detailed logs for debugging and analysis.
+1. [Features](#features)
+2. [Architecture](#architecture)
+3. [Requirements](#requirements)
+4. [Installation](#installation)
+   - [Automated Installation](#automated-installation)
+   - [Manual Installation](#manual-installation)
+5. [Usage](#usage)
+6. [Configuration](#configuration)
+   - [Gemini CLI Instructions](#gemini-cli-instructions)
+7. [Available Commands](#available-commands)
+8. [Troubleshooting](#troubleshooting)
+9. [Security](#security)
+10. [Contributing](#contributing)
+11. [Acknowledgments](#acknowledgments)
 
 ---
 
-## Project Architecture and Structure
+## 👾 Features
 
-```text
+- **Voice-Controlled CLI**: Seamless integration with Gemini CLI for executing predefined instructions.
+- **Spotify Integration**: Play tracks, playlists, and liked songs directly from the terminal.
+- **Real-Time Voice Synthesis**: Powered by SpeechNote for immersive feedback.
+- **Floating Terminal**: Customizable terminal powered by [ghostty](https://github.com/ghostty-org/ghostty).
+- **Modular Architecture**: Easily extendable and adaptable to your workflow.
+- **Error Handling**: Robust logging and debugging tools.
+
+---
+
+## 🧰 Architecture
+
+```plaintext
 VoxAI.Dots/
-├── README.md                # Main documentation
+├── README.md                  # Documentation
 ├── .gemini/
-│   └── GEMINI.md            # Advanced configuration for Gemini CLI
+│   └── GEMINI.md              # Gemini CLI instructions
 ├── bin/
-│   ├── speech_wrapper.sh    # Wrapper for voice synthesis
-│   └── play                 # Script for optimized music playback
-├── .ghostty/
-│   └── config               # Optional configuration for floating terminal
-└── .gitignore               # Logs and temporary files exclusion
+│   ├── speech_wrapper.sh      # Voice synthesis wrapper
+│   ├── play                   # Music playback script
+│   ├── my_playlist.sh         # Spotify playlist playback
+│   ├── my_spotify.sh          # Spotify playback controller
+│   └── get_spotify_token.py   # Spotify OAuth token generator
+├── .config/
+│   └── ghostty/
+│       └── config             # Floating terminal configuration
+├── Docs/
+│   └── SPOTIFY.md             # Spotify integration documentation
+├── install.sh                 # Automated installation script
+└── .gitignore                 # Git ignore files
 ```
 
 ---
 
-## Technical Requirements and Dependencies
+## 🛠 Requirements
 
-### Required System Packages (Arch Linux and derivatives)
+### System Dependencies
 
-- **`yt-dlp`**: For music downloading and streaming.
-- **`mpv`**: Multimedia player used for playback.
-- **`playerctl`**: Universal control for multiple players.
-- **`git` and `bash`**: Essential management and scripting tools.
-- **`flatpak`**: Needed to install SpeechNote.
-- **`go` or `yay`**: Required only if you decide to use ghostty.
-
-### Additional Dependencies
-
-- **[SpeechNote (Flatpak)](https://flathub.org/apps/net.mkiol.SpeechNote):** Key tool for real-time voice synthesis.
-
-### 5. Easy Installation Method
-
-To quickly set up **VoxAI.Dots** with all required configurations:
-
-```bash
-bash -c "$(curl -sSL https://raw.githubusercontent.com/kurojs/VoxAI.Dots/main/install.sh)"
-```
-
-> ⚠️ **Note:** Avoid using `curl ... | bash` directly — it breaks interactive prompts like `read`.  
-> This method ensures the script can receive keyboard input properly.
-
-Once started, the script will guide you through the setup process, including:
-
-- Installing essential dependencies (`yt-dlp`, `mpv`, `playerctl`, etc.)
-- Optionally installing [**SpeechNote**](https://flathub.org/apps/net.mkiol.SpeechNote)
-- Optionally setting up a [**ghostty**](https://github.com/charmbracelet/ghostty) terminal configuration
+- **Core Tools**: `bash`, `git`, `curl`, `jq`
+- **Media Tools**: `yt-dlp`, `mpv`, `playerctl`
+- **Flatpak**: For managing SpeechNote
+- **Python 3.7+**: Required for Spotify token generation
+- **Node.js 20+**: Required for Gemini CLI
 
 ---
 
-💡 **Tip:** If you cloned this repository, you can also run the script locally:
+## 🍫 Installation
 
-```bash
-./install.sh
-```
+### Automated Installation
 
-## Complete Installation Guide
+Run the following command to set up everything automatically:
 
-### 1. Install Gemini CLI
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/VoxAI.Dots.git
+   cd VoxAI.Dots
+   ```
 
-Make sure you have Node.js (version 20 or higher) installed.
+2. Run the installation script:
+   ```bash
+   bash install.sh
+   ```
 
-Run Gemini CLI directly using:
+### Manual Installation (Recommended)
 
-```bash
-npx https://github.com/google-gemini/gemini-cli
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/kurojs/VoxAI.Dots.git
+   cd VoxAI.Dots
+   ```
 
-Alternatively, install it globally with:
+2. Install system dependencies:
+   ```bash
+   sudo pacman -Syu yt-dlp mpv playerctl git bash flatpak curl jq
+   ```
 
-```bash
-npm install -g @google/gemini-cli
-```
+3. Install SpeechNote via Flatpak:
+   ```bash
+   flatpak install -y flathub net.mkiol.SpeechNote
+   ```
 
-Then run:
+4. Copy scripts to your local bin folder:
+   ```bash
+   mkdir -p ~/.local/bin
+   cp bin/* ~/.local/bin/
+   chmod +x ~/.local/bin/*
+   ```
 
-```bash
-gemini
-```
+5. Configure Gemini CLI:
+   ```bash
+   mkdir -p ~/.gemini
+   cp .gemini/GEMINI.md ~/.gemini/
+   ```
 
-### 2. Install System Dependencies
-
-```bash
-sudo pacman -Syu yt-dlp mpv playerctl git bash flatpak
-```
-
-### 3. Install SpeechNote via Flatpak
-
-```bash
-# Installation
-flatpak install -y flathub net.mkiol.SpeechNote
-
-# Run
-flatpak run net.mkiol.SpeechNote
-```
-
-### 4. (Optional) Install Ghostty for Floating Terminal
-
-You can install ghostty from the official repository or from AUR:
-
-- **From Go (recommended for latest version):**
-
-```bash
-go install github.com/ghostty-org/ghostty@latest
-```
-
-- **From AUR using yay:**
-
-```bash
-yay -S ghostty-git
-```
-
-More info and releases at: [ghostty-org/ghostty](https://github.com/ghostty-org/ghostty)
-
-### 5. Clone the Repository and Prepare Scripts
-
-```bash
-git clone https://github.com/tuusuario/VoxAI.Dots.git
-cd VoxAI.Dots
-mkdir -p ~/.local/bin
-cp scripts/speech_wrapper.sh scripts/play ~/.local/bin/
-chmod +x ~/.local/bin/speech_wrapper.sh ~/.local/bin/play
-```
+6. Configure ghostty (optional):
+   ```bash
+   mkdir -p ~/.config/ghostty
+   cp .config/ghostty/config ~/.config/ghostty/
+   ghostty &
+   ```
 
 ---
 
-## Usage
+## 🤖 Usage
 
-- Run Gemini CLI and use the voice triggers defined in `GEMINI.md`.
-- The scripts `speech_wrapper.sh` and `play` should be in your PATH (`~/.local/bin`).
-- The voice wrapper logs in `~/.local/share/speech_wrapper.log`.
-- Music control is seamless and does not interrupt the floating terminal.
+> ❗ **Important Warning**  
+> Before proceeding with this step (required for Spotify integration), make sure to read `Docs/SPOTIFY.md` for detailed instructions.  
+> This script requires your **Spotify Client ID** and **Client Secret** to function correctly.  
+> **Do not skip this step** — proper configuration is essential.
 
----
 
-## Configuration
+### Spotify Token Management
 
-### 1. Configure Gemini CLI
-
-```bash
-mkdir -p ~/.gemini/
-cp .gemini/GEMINI.md ~/.gemini/GEMINI.md
-```
-
-### 2. (Optional) Configure ghostty
+Generate or refresh your Spotify token:
 
 ```bash
-mkdir -p ~/.config/ghostty
-cp .ghostty/config ~/.config/ghostty/config
-ghostty &
+python3 bin/get_spotify_token.py
 ```
 
----
+> ✅ **All Set**  
+> If everything is configured correctly, you should be able to give these instructions to **Gemini CLI**, and it will successfully control your Spotify environment as expected.
 
-## Available Commands
+> 📝 *Note: This workaround exists solely to support non-premium users who need Spotify interaction.  
+> We replaced traditional playback methods with... creative engineering.*
 
-### Practical Usage Example
+### Music Playback
 
-#### Scenario 1: Music Playback Control
+- Play a specific song:
+  ```bash
+  play "Song Name"
+  ```
 
-- User: "I want to listen to Bohemian Rhapsody."
-  - Executed command: `play "Bohemian Rhapsody Queen"`
-  - Result: The song plays directly using `yt-dlp` and `mpv`.
+- Spotify playlist playback:
+  ```bash
+  my_playlist.sh "https://open.spotify.com/playlist/PLAYLIST_ID"
+  ```
 
-- User: "Pause the music."
-  - Executed command: `playerctl play-pause`
-  - Result: Playback pauses.
-
-#### Scenario 2: Activate Voice Synthesis
-
-- User: "Speak from now on."
-  - Executed command: `speech_wrapper.sh "Text to synthesize"`
-  - Result: The text is read aloud using SpeechNote.
-
-### Activate voice synthesis
-
-- Say: `speak from now on` or `speak aloud` (activates automatic reading of Gemini responses)
-
-### Music control
-
-- `next song` → `playerctl next`
-- `previous song` → `playerctl previous`
-- `pause the music` / `resume the music` → `playerctl play-pause`
-- `play {song}` / `start {song}` / `I want to listen to {song}` → executes `play "song name"`
-
-### Example use of the play script
-
-```bash
-play "Party all the time"
-```
+- Control playback:
+  - Next song:
+    ```bash
+    playerctl next
+    ```
+  - Previous song:
+    ```bash
+    playerctl previous
+    ```
+  - Pause/Resume:
+    ```bash
+    playerctl play-pause
+    ```
 
 ---
 
-## Troubleshooting
+## 📼 Configuration
 
-- **SpeechNote not responding:** Verify Flatpak is properly installed and the `net.mkiol.SpeechNote` package is available. Make sure to install a voice model.
-- **No music playback:** Ensure `yt-dlp` and `mpv` are installed and working.
-- **Floating terminal doesn't appear:** Confirm ghostty is installed in its latest version and is in your PATH.
-- **Script permissions:** If scripts don't run, check execution permissions (`chmod +x`).
-- **Logs:** Check `~/.local/share/speech_wrapper.log` for voice synthesis error details.
+### Gemini CLI Instructions
+
+Gemini CLI is configured to execute specific actions based on predefined instructions. These instructions are defined in the `.gemini/GEMINI.md` file and include the following:
+
+#### **General Instructions**
+
+- **Enable voice synthesis**:
+  - Instruction: `"start speaking now"` or `"speak out loud"`
+  - Action: Executes the following command to read responses aloud:
+    ```bash
+    /bin/bash -c '~/.local/bin/speech_wrapper.sh "{output_text}"'
+    ```
+
+#### **Music Playback Instructions**
+
+- **Play the next song**:
+  - Instruction: `"next song"`
+  - Action: Executes:
+    ```bash
+    playerctl next
+    ```
+
+- **Play the previous song**:
+  - Instruction: `"previous song"`
+  - Action: Executes:
+    ```bash
+    playerctl previous
+    ```
+
+- **Pause or resume music**:
+  - Instruction: `"pause the music"` or `"resume the music"`
+  - Action: Executes:
+    ```bash
+    playerctl play-pause
+    ```
+
+- **Play a specific song**:
+  - Instruction: `"play {song}"`, `"I want to listen to {song}"`
+  - Action: Executes:
+    ```bash
+    /bin/bash -c '~/.local/bin/speech_wrapper.sh "Playing {song}." & /home/kuro/.local/bin/play "{song}"'
+    ```
 
 ---
 
-## Credits and Acknowledgments
+## 🌀 Security
 
-- Gemini CLI by Google
-- SpeechNote by [mkiol](https://flathub.org/apps/net.mkiol.SpeechNote)
-- ghostty by Charmbracelet
-- yt-dlp, mpv, playerctl, bash, Arch Linux community
+- Tokens are stored locally and expire after 1 hour.
+- Avoid sharing your `spotify_token.json` file or exposing sensitive credentials.
+- Use the Python script to refresh tokens securely.
+
+> ✅ *Tokens are automatically refreshed, so you won’t need to manually log in or rerun the Python script — you might even forget it exists.  
+> Note: The proper functioning of all Spotify-related scripts depends on this token file, so make sure it remains in your `bin/` directory.*
+ 
+---
+
+## ☕ Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -m 'Add your feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a Pull Request.
 
 ---
 
-> For support, suggestions, or contributions, open an issue or pull request in the official repository.
+## Acknowledgments
+
+- [Gemini CLI](https://github.com/google/gemini-cli) by Google  
+- [SpeechNote](https://github.com/mkiol/SpeechNote) by mkiol  
+- [ghostty](https://github.com/ghostty-org/ghostty) by Charmbracelet  
+- Tools: `yt-dlp`, `mpv`, `playerctl`  
+- Arch Linux community and contributors
+
+---
+
+<footer>
+<sub>Crafted with Determination 👾 by Kuro • Powered by Arch Linux • Maintained with professional passion</sub>
+</footer>
