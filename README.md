@@ -10,15 +10,16 @@
 [![SpeechNote](https://img.shields.io/badge/SpeechNote-6e40c9)](https://github.com/mkiol/SpeechNote)
 [![ghostty](https://img.shields.io/badge/ghostty-6e40c9)](https://github.com/ghostty-org/ghostty)
 [![License: MIT](https://img.shields.io/badge/License-MIT-6e40c9)](https://opensource.org/licenses/MIT)
+
 > VoxAI.Dots – The Modular Jarvis-Like AI Assistant for Arch Linux
 
 VoxAI.Dots is a modular collection of personal dotfiles enhanced with AI, designed to optimize productivity on Arch Linux systems. Inspired by Jarvis, it integrates seamlessly with Gemini CLI, Spotify, and advanced terminal tools to deliver real-time voice synthesis, intelligent music control, and a floating terminal experience. Lightweight, scalable, and highly customizable, VoxAI.Dots brings together automation, multimedia control, and smart scripting in a unified environment tailored for advanced users.
 
 ---
 
-# Click to preview the demo
+# Preview
 
-[![Demo](https://i.imgur.com/3DpT3fb.png)](https://kurojs.github.io/AssetHub/videos/2025-07-05%2001-03-55.mp4)
+<https://github.com/user-attachments/assets/bf2f9693-8dae-465f-bd67-b2f1e275c19c>
 
 ---
 
@@ -95,12 +96,14 @@ VoxAI.Dots/
 Run the following command to set up everything automatically:
 
 1. Clone the repository:
+
    ```bash
-   git clone https://github.com/yourusername/VoxAI.Dots.git
+   git clone https://github.com/kurojs/VoxAI.Dots.git
    cd VoxAI.Dots
    ```
 
 2. Run the installation script:
+
    ```bash
    bash install.sh
    ```
@@ -108,22 +111,26 @@ Run the following command to set up everything automatically:
 ### Manual Installation (Recommended)
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/kurojs/VoxAI.Dots.git
    cd VoxAI.Dots
    ```
 
 2. Install system dependencies:
+
    ```bash
    sudo pacman -Syu yt-dlp mpv playerctl git bash flatpak curl jq
    ```
 
 3. Install SpeechNote via Flatpak:
+
    ```bash
    flatpak install -y flathub net.mkiol.SpeechNote
    ```
 
 4. Copy scripts to your local bin folder:
+
    ```bash
    mkdir -p ~/.local/bin
    cp bin/* ~/.local/bin/
@@ -131,12 +138,14 @@ Run the following command to set up everything automatically:
    ```
 
 5. Configure Gemini CLI:
+
    ```bash
    mkdir -p ~/.gemini
    cp .gemini/GEMINI.md ~/.gemini/
    ```
 
 6. Configure ghostty (optional):
+
    ```bash
    mkdir -p ~/.config/ghostty
    cp .config/ghostty/config ~/.config/ghostty/
@@ -152,7 +161,6 @@ Run the following command to set up everything automatically:
 > This script requires your **Spotify Client ID** and **Client Secret** to function correctly.  
 > **Do not skip this step** — proper configuration is essential.
 
-
 ### Spotify Token Management
 
 Generate or refresh your Spotify token:
@@ -164,31 +172,38 @@ python3 bin/get_spotify_token.py
 > ✅ **All Set**  
 > If everything is configured correctly, you should be able to give these instructions to **Gemini CLI**, and it will successfully control your Spotify environment as expected.
 
-> 📝 *Note: This workaround exists solely to support non-premium users who need Spotify interaction.  
-> We replaced traditional playback methods with... creative engineering.*
+> 📝 _Note: This workaround exists solely to support non-premium users who need Spotify interaction.  
+> We replaced traditional playback methods with... creative engineering._
 
 ### Music Playback
 
 - Play a specific song:
+
   ```bash
   play "Song Name"
   ```
 
 - Spotify playlist playback:
+
   ```bash
   my_playlist.sh "https://open.spotify.com/playlist/PLAYLIST_ID"
   ```
 
 - Control playback:
   - Next song:
+
     ```bash
     playerctl next
     ```
+
   - Previous song:
+
     ```bash
     playerctl previous
     ```
+
   - Pause/Resume:
+
     ```bash
     playerctl play-pause
     ```
@@ -206,6 +221,7 @@ Gemini CLI is configured to execute specific actions based on predefined instruc
 - **Enable voice synthesis**:
   - Instruction: `"start speaking now"` or `"speak out loud"`
   - Action: Executes the following command to read responses aloud:
+
     ```bash
     /bin/bash -c '~/.local/bin/speech_wrapper.sh "{output_text}"'
     ```
@@ -215,6 +231,7 @@ Gemini CLI is configured to execute specific actions based on predefined instruc
 - **Play the next song**:
   - Instruction: `"next song"`
   - Action: Executes:
+
     ```bash
     playerctl next
     ```
@@ -222,6 +239,7 @@ Gemini CLI is configured to execute specific actions based on predefined instruc
 - **Play the previous song**:
   - Instruction: `"previous song"`
   - Action: Executes:
+
     ```bash
     playerctl previous
     ```
@@ -229,6 +247,7 @@ Gemini CLI is configured to execute specific actions based on predefined instruc
 - **Pause or resume music**:
   - Instruction: `"pause the music"` or `"resume the music"`
   - Action: Executes:
+
     ```bash
     playerctl play-pause
     ```
@@ -236,6 +255,7 @@ Gemini CLI is configured to execute specific actions based on predefined instruc
 - **Play a specific song**:
   - Instruction: `"play {song}"`, `"I want to listen to {song}"`
   - Action: Executes:
+
     ```bash
     /bin/bash -c '~/.local/bin/speech_wrapper.sh "Playing {song}." & /home/kuro/.local/bin/play "{song}"'
     ```
@@ -248,9 +268,9 @@ Gemini CLI is configured to execute specific actions based on predefined instruc
 - Avoid sharing your `spotify_token.json` file or exposing sensitive credentials.
 - Use the Python script to refresh tokens securely.
 
-> ✅ *Tokens are automatically refreshed, so you won’t need to manually log in or rerun the Python script — you might even forget it exists.  
-> Note: The proper functioning of all Spotify-related scripts depends on this token file, so make sure it remains in your `bin/` directory.*
- 
+> ✅ _Tokens are automatically refreshed, so you won’t need to manually log in or rerun the Python script — you might even forget it exists.  
+> Note: The proper functioning of all Spotify-related scripts depends on this token file, so make sure it remains in your `bin/` directory._
+
 ---
 
 ## ☕ Contributing
@@ -265,10 +285,10 @@ Gemini CLI is configured to execute specific actions based on predefined instruc
 
 ## Acknowledgments
 
-- [Gemini CLI](https://github.com/google/gemini-cli) by Google  
-- [SpeechNote](https://github.com/mkiol/SpeechNote) by mkiol  
-- [ghostty](https://github.com/ghostty-org/ghostty) by Charmbracelet  
-- Tools: `yt-dlp`, `mpv`, `playerctl`  
+- [Gemini CLI](https://github.com/google/gemini-cli) by Google
+- [SpeechNote](https://github.com/mkiol/SpeechNote) by mkiol
+- [ghostty](https://github.com/ghostty-org/ghostty) by Charmbracelet
+- Tools: `yt-dlp`, `mpv`, `playerctl`
 - Arch Linux community and contributors
 
 ---
